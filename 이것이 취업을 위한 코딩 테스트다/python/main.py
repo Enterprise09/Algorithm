@@ -1,10 +1,25 @@
-# 팩토리얼 구현 예제
+# DFS 구현 예제
 
-def factorial_recursive(n):
-  if n <= 1:
-    return 1
-  return n * factorial_recursive(n - 1)
-  
-N = int(input())
+def dfs(graph, v, isVisit):
+  isVisit[v] = True
+  print(v, end=' ')
 
-print(factorial_recursive(N))
+  for i in graph[v]:
+    if not isVisit[i]:
+      dfs(graph, i, isVisit)
+
+graph = [
+  [], 
+  [2, 3, 8],
+  [1, 7],
+  [1, 4, 5],
+  [3, 5],
+  [3, 4],
+  [7],
+  [1, 7],
+]
+
+isVisit = [False] * 9
+
+dfs(graph, 1, isVisit)
+
